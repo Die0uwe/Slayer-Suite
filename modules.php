@@ -120,3 +120,11 @@ add_shortcode('sa_realm_status_2', function() {
     <?php
     return ob_get_clean();
 });
+// Alias: de core roept sa_status_ + bestandsnaam aan.
+// Bestand heet modules.php → core roept sa_status_modules() aan.
+// Deze alias zorgt dat de admin tab correct werkt.
+if (!function_exists('sa_status_modules')) {
+    function sa_status_modules() {
+        sa_status_realm_monitor_2();
+    }
+}

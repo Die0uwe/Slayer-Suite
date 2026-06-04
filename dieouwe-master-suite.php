@@ -50,8 +50,8 @@ add_action('admin_init', 'sa_init_database');
 ##### 2. API CORE & SETTINGS #####
 function sa_get_core_settings() {
     return [
-        'id'      => get_option('sa_blizz_id', '3a3eb7ea215641989c08bd24503c8ed0'),
-        'sec'     => get_option('sa_blizz_sec', 'yYD5Ka6TwKmLRn8qLBHuv9Xief1kr0Gc'),
+        'id'      => get_option('sa_blizz_id', ''),   // Stel in via Core Config dashboard
+        'sec'     => get_option('sa_blizz_sec', ''),   // Stel in via Core Config dashboard
         'realm'   => get_option('sa_realm_name', 'sporeggar'),
         'guild'   => get_option('sa_guild_name', 'slayer-alliance'),
         'webhook' => get_option('sa_discord_webhook', ''),
@@ -166,6 +166,7 @@ function sa_admin_ui() {
     }
 
     if (isset($_POST['sa_save_module'])) {
+        check_admin_referer('sa_editor_action', 'sa_editor_nonce');
         $old_fn = sanitize_text_field($_POST['old_filename']);
         $new_fn = sanitize_text_field($_POST['mod_filename']);
         if (!empty($new_fn)) {
@@ -178,6 +179,7 @@ function sa_admin_ui() {
     }
 
     if (isset($_POST['sa_delete_module'])) {
+        check_admin_referer('sa_editor_action', 'sa_editor_nonce');
         $fn = sanitize_text_field($_POST['mod_filename']);
         if (!empty($fn) && file_exists($module_path . $fn)) {
             unlink($module_path . $fn);
@@ -294,6 +296,7 @@ function sa_render_editor($path, $imported_code = '') {
                 <input type="submit" name="sa_import_module" class="button" value="📥 LADEN">
             </form>
             <form method="post" style="display:flex; align-items:center; gap:10px; border-left:2px solid #ddd; padding-left:15px;">
+                <?php wp_nonce_field('sa_editor_action', 'sa_editor_nonce'); ?>
                 <input type="hidden" name="old_filename" value="<?php echo esc_attr($selected_file); ?>">
                 <input type="submit" name="sa_save_module" class="sa-btn green" value="💾 OPSLAAN">
                 <input type="submit" name="sa_export_module" class="sa-btn blue" value="📤 EXPORT">
