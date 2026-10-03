@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v26.1.0] — 2026-06-04 · Sprint 1 Security Hardening
+
+### Security
+- Hardcoded Blizzard-credentials verwijderd uit `sa_get_core_settings()` (dieouwe-master-suite.php); id en secret komen alleen nog uit de opties `sa_blizz_id` en `sa_blizz_sec`, in te stellen via het Core Config dashboard.
+- `sync_manager.php` (V5.4): `sa_get_quick_token()` verwijderd, token via `sa_get_valid_token()` uit de core (geen dubbele credentials).
+- `sync_manager.php`: hardcoded `gvxx_`-tabelprefix vervangen door `$wpdb->prefix` op alle plaatsen.
+- Nonce-verificatie toegevoegd op beide AJAX-handlers van de sync manager.
+- Module-editor: nonce (`sa_editor_nonce`) en `check_admin_referer()` op `sa_save_module` en `sa_delete_module`.
+
+### Changed
+- Guild en realm in de sync manager komen uit `sa_get_core_settings()` in plaats van vaste teksten.
+
+### Fixed
+- `modules.php`: alias `sa_status_modules()` toegevoegd, zodat het dashboard-tabblad weer werkt.
+
+### Let op
+- De Blizzard-credentials uit v25.12.30 staan nog in de git-geschiedenis van deze publieke repo. Roteer de client secret bij Blizzard (develop.battle.net) en zet de nieuwe waarde alleen in de WordPress-opties.
+
 ## [v25.12.30] — 2026-06-04 · Initial GitHub Release
 
 ### Added

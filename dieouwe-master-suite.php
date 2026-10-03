@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Dieouwe Master Suite - Modular Core
- * Version: 25.12.30
+ * Version: 26.1.0
  * Description: Volledige Suite met Blizzard, Twitch, Discord Test en Modulaire Editor. Alles strikt gescheiden.
  * Author: Slayer Alliance
  * Website: http://www.slayeralliance.com

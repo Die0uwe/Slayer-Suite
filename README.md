@@ -1,7 +1,7 @@
 # Slayer Alliance Master Suite
 
 **WordPress plugin voor [slayeralliance.com](https://slayeralliance.com)**  
-Guild: Slayer Alliance · Realm: Sporeggar (EU) · Versie: v25.12.30
+Guild: Slayer Alliance · Realm: Sporeggar (EU) · Versie: v26.1.0
 
 ---
 
